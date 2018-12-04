@@ -5,11 +5,13 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
+        classpath 'com.novoda:bintray-release:0.9'//添加
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -19,13 +21,30 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven{url "https://jitpack.io"}
+        mavenCentral()
         maven {
             // All of React Native (JS, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
         }
     }
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+    }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+//统一声明配置
+ext {
+    userOrg = 'yasin27878'
+    groupId = 'com.yasin'
+    artifactId = 'yruntime'
+    publishVersion = '1.0.0'
+    uploadName = 'uploadYruntime'
+    desc = 'Request code can be generated automatically'
+    website = 'https://github.com/Yasin27878/YRuntime'
+    licences = ['Apache-2.0']
 }
