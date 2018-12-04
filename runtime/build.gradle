@@ -35,7 +35,6 @@ dependencies {
 
 //添加
 publish {
-    uploadName = rootProject.uploadName
     userOrg = rootProject.userOrg
     groupId = rootProject.groupId
     artifactId = rootProject.artifactId
